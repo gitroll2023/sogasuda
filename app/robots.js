@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://couplespring.vercel.app/sitemap.xml',
+    sitemap: 'https://lovespring.kro.kr/sitemap.xml',
   }
 }
