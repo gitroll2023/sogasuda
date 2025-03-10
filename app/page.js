@@ -50,8 +50,11 @@ export default function Home() {
             <div className={styles.priceCard}>
               <h3>특별 할인 티켓</h3>
               <div className={styles.priceInfo}>
-                <span className={styles.originalPrice}>10,000원</span>
-                <span className={styles.arrow}>→</span>
+                <div className={styles.priceGroup}>
+                  <span className={styles.originalPrice}>10,000원</span>
+                  <span className={`${styles.arrow} ${styles.desktopOnly}`}>→</span>
+                  <span className={`${styles.arrow} ${styles.mobileOnly}`}>▼</span>
+                </div>
                 <span className={styles.discountPrice}>5,000원</span>
               </div>
               <p className={styles.priceNote}>* 소개로 오시는 분들께 50% 할인</p>
@@ -59,10 +62,11 @@ export default function Home() {
           </div>
 
           <div className={styles.tags}>
-            <span>#봄이좋냐</span>
+            <span>#광주청년예술</span>
             <span>#연극</span>
-            <span>#밴드</span>
-            <span>#댄스</span>
+            <span>#밴드공연</span>
+            <span>#댄스공연</span>
+            <span>#광주아트홀</span>
           </div>
 
           <div className={styles.castInfo}>
