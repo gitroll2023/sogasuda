@@ -16,12 +16,15 @@ export const metadata = {
     description: '광주 청년들이 준비한 특별한 연극 "연애해 봄?". 2025년 3월 광주 아트홀에서 펼쳐지는 특별한 공연',
     images: [
       {
-        url: '/img/2.jpg',
+        url: 'https://lovespring.kro.kr/img/2.jpg',
         width: 800,
         height: 600,
         alt: '연애해 봄? 연극 포스터',
       },
     ],
+    siteName: '광주 연애해봄',
+    locale: 'ko_KR',
+    type: 'website',
   },
   verification: {
     google: 'UEFedNALtESw4sbZOz8g0EZA-7rPXxcNOpeKGCwV9Fg',
