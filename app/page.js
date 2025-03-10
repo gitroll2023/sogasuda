@@ -71,7 +71,7 @@ export default function Home() {
 
           <div className={styles.castInfo}>
             <h3>Cast & Crew</h3>
-            <p>광주 청년들이 만들어가는 특별한 무대</p>
+            <p>광주 청년들이 만들어가는<br/>특별한 무대</p>
           </div>
         </div>
       </section>
