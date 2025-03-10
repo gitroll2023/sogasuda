@@ -8,7 +8,7 @@ export default function Home() {
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
             <span className={styles.questionMark}>?</span>
-            광주 연애해 봄
+            연애해 봄
           </h1>
           <p className={styles.subtitle}>광주 청년들의 특별한 이야기</p>
         </div>
