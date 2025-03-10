@@ -8,9 +8,9 @@ export default function Home() {
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
             <span className={styles.questionMark}>?</span>
-            연애해 봄
+            광주 연애해 봄
           </h1>
-          <p className={styles.subtitle}>청춘들의 특별한 이야기</p>
+          <p className={styles.subtitle}>광주 청년들의 특별한 이야기</p>
         </div>
       </div>
 
@@ -18,7 +18,7 @@ export default function Home() {
         <div className={styles.imageWrapper}>
           <Image
             src="/img/1.jpg"
-            alt="연애해 봄? 연극 포스터"
+            alt="광주 연애해봄 연극 포스터 - 2025년 3월 공연"
             width={0}
             height={0}
             sizes="100vw"
@@ -35,14 +35,14 @@ export default function Home() {
               <i className="far fa-calendar-alt"></i>
               <h3>공연 일정</h3>
               <p>2025년 3월 22일(토) / 29일(토)</p>
-              <p className={styles.highlight}>15:00</p>
+              <p className={styles.highlight}>오후 3시 (15:00)</p>
             </div>
             
             <div className={styles.infoCard}>
               <i className="fas fa-map-marker-alt"></i>
               <h3>공연 장소</h3>
-              <p>광주 아트홀</p>
-          
+              <p>광주광역시</p>
+              <p className={styles.highlight}>광주 아트홀</p>
             </div>
           </div>
 
