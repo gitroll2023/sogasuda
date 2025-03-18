@@ -1,7 +1,21 @@
 import Image from 'next/image';
 import styles from './page.module.css';
+import { promises as fs } from 'fs';
+import path from 'path';
+import { parseLyrics } from './utils/lyrics';
+import MusicPlayer from './components/MusicPlayer';
 
-export default function Home() {
+export default async function Home() {
+  // 가사 파일 읽기
+  let lyrics = [];
+  try {
+    const lyricsPath = path.join(process.cwd(), 'public/music/Spring Love.txt');
+    const lyricsText = await fs.readFile(lyricsPath, 'utf8');
+    lyrics = parseLyrics(lyricsText);
+  } catch (error) {
+    console.error('가사 파일을 읽는 중 오류가 발생했습니다:', error);
+  }
+  
   return (
     <main className={styles.main}>
       <div className={styles.hero}>
@@ -15,6 +29,8 @@ export default function Home() {
       </div>
 
       <section className={styles.container}>
+        <MusicPlayer lyrics={lyrics} />
+        
         <div className={styles.imageWrapper}>
           <Image
             src="/img/1.jpg"

@@ -1,0 +1,168 @@
+.musicPlayer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  padding-top: 20px;
+}
+
+.playButton {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 160px;
+  letter-spacing: 0.5px;
+}
+
+.playButton:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff8a8a 0%, #ff5252 100%);
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.playButton:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+.playButton:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 3px 6px rgba(255, 107, 107, 0.2);
+}
+
+.playIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.playText {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.lyricsContainer {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 600px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.lyricsContainer.transitioning .prevLyric,
+.lyricsContainer.transitioning .currentLyric,
+.lyricsContainer.transitioning .nextLyric {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.lyricsContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: -1;
+}
+
+.timeInfo {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 0.8rem;
+  color: #888;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.lyricsContainer:hover .timeInfo {
+  opacity: 1;
+}
+
+.prevLyric, .nextLyric {
+  color: #888;
+  font-size: 0.95rem;
+  margin: 0.7rem 0;
+  opacity: 0.7;
+  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  width: 100%;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.prevLyric {
+  transform: translateY(10px);
+}
+
+.nextLyric {
+  transform: translateY(-10px);
+}
+
+.currentLyric {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff6b6b;
+  margin: 1rem 0;
+  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: scale(1.05);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  position: relative;
+  will-change: transform, opacity;
+}
+
+.currentLyric::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #ff6b6b;
+  transform: translateX(-50%);
+  transition: width 0.5s ease;
+}
+
+.currentLyric:hover::after {
+  width: 50%;
+}
