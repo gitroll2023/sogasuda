@@ -9,7 +9,7 @@ export default async function Home() {
   // 가사 파일 읽기
   let lyrics = [];
   try {
-    const lyricsPath = path.join(process.cwd(), 'public/music/Spring Love.txt');
+    const lyricsPath = path.join(process.cwd(), 'public/music/PlayGround.txt');
     const lyricsText = await fs.readFile(lyricsPath, 'utf8');
     lyrics = parseLyrics(lyricsText);
   } catch (error) {
@@ -21,10 +21,8 @@ export default async function Home() {
       <div className={styles.hero}>
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
-            <span className={styles.questionMark}>?</span>
-            연애해 봄
+            넷플릭스 화제의 드라마 "폭싹 속았수다" 광주 ver. 떴다!!😎
           </h1>
-          <p className={styles.subtitle}>광주 청년들의 특별한 이야기</p>
         </div>
       </div>
 
@@ -34,7 +32,7 @@ export default async function Home() {
         <div className={styles.imageWrapper}>
           <Image
             src="/img/1.jpg"
-            alt="광주 연애해봄 연극 포스터 - 2025년 3월 공연"
+            alt="폭싹 속았수다 광주 ver. 포스터"
             width={0}
             height={0}
             sizes="100vw"
@@ -46,48 +44,51 @@ export default async function Home() {
         </div>
 
         <div className={styles.infoSection}>
-          <div className={styles.dateLocation}>
-            <div className={styles.infoCard}>
-              <i className="far fa-calendar-alt"></i>
-              <h3>공연 일정</h3>
-              <p>2025년 3월 22일(토) / 29일(토)</p>
-              <p className={styles.highlight}>오후 3시 (15:00)</p>
-            </div>
-            
-            <div className={styles.infoCard}>
-              <i className="fas fa-map-marker-alt"></i>
-              <h3>공연 장소</h3>
-              <p>광주광역시</p>
-              <p className={styles.highlight}>광주 아트홀</p>
-            </div>
+          <div className={styles.commentSection}>
+            <h2 className={styles.sectionTitle}>💬COMMENT</h2>
+            <p className={styles.comment}>"동(童)심으로 돌아가서 현재를 동(動)심하라"</p>
+            <p className={styles.commentSub}>BACK TO THE 2000's</p>
+            <p className={styles.description}>
+              2030대 모두가 공감할 추억으로<br/>
+              인도하는 체험형 팝업 스토어가 열립니다!
+            </p>
+            <p className={styles.description}>
+              졸업한지 10년이 지났지만 다시 친구들과 놀이터를 뛰어놀던 그 시절로 스며드는.....🫠
+            </p>
           </div>
 
-          <div className={styles.priceSection}>
-            <div className={styles.priceCard}>
-              <h3>특별 할인 티켓</h3>
-              <div className={styles.priceInfo}>
-                <div className={styles.priceGroup}>
-                  <span className={styles.originalPrice}>10,000원</span>
-                  <span className={`${styles.arrow} ${styles.desktopOnly}`}>→</span>
-                  <span className={`${styles.arrow} ${styles.mobileOnly}`}>▼</span>
-                </div>
-                <span className={styles.discountPrice}>5,000원</span>
+          <div className={styles.detailsSection}>
+            <h2 className={styles.sectionTitle}>🔖DETAILS</h2>
+            <div className={styles.zoneInfo}>
+              <div className={styles.zone}>
+                <h3>📌PAST ZONE</h3>
+                <p>→추억의 그시절로</p>
               </div>
-              <p className={styles.priceNote}>* 소개로 오시는 분들께 50% 할인</p>
+              
+              <div className={styles.zone}>
+                <h3>📌PRESENT ZONE</h3>
+                <p>→내 안의 "인사이드 아웃"</p>
+              </div>
+              
+              <div className={styles.zone}>
+                <h3>📌FUTURE ZONE</h3>
+                <p>→느린 우체국</p>
+              </div>
             </div>
           </div>
 
-          <div className={styles.tags}>
-            <span>#광주청년예술</span>
-            <span>#연극</span>
-            <span>#밴드공연</span>
-            <span>#댄스공연</span>
-            <span>#광주아트홀</span>
-          </div>
-
-          <div className={styles.castInfo}>
-            <h3>Cast & Crew</h3>
-            <p>광주 청년들이 만들어가는<br/>특별한 무대</p>
+          <div className={styles.eventInfoSection}>
+            <div className={styles.divider}>➖➖➖➖➖➖➖</div>
+            <div className={styles.eventDetails}>
+              <p><span className={styles.icon}>🕹</span>광주 청년 공간 "하다"</p>
+              <p className={styles.address}>(동구 대의동 6-1, 2,3층)</p>
+              <p><span className={styles.icon}>📅</span>25.4.11~12 (PM5-9시)</p>
+              <p><span className={styles.icon}>✏️</span>인스타 팔로우하고 행사 포스터 제시하고 입장할시 3,000원으로 할인!</p>
+              <p><span className={styles.icon}>✏️</span>모든 방문객분들께 굿즈 증정!</p>
+              <p><span className={styles.icon}>✏️</span>한번에 많은 사람이 몰릴수있으니, 참고 부탁드립니다 : )</p>
+              <p><span className={styles.icon}>🎆</span>주최 : 청춘미담</p>
+            </div>
+            <div className={styles.divider}>➖➖➖➖➖➖➖</div>
           </div>
         </div>
       </section>

@@ -145,13 +145,13 @@ export default function MusicPlayer({ lyrics }) {
           )}
         </span>
         <span className={styles.playText}>
-          {isPlaying ? "Pause" : "Play Spring Love"}
+          {isPlaying ? "Pause" : "폭싹 속았수다 홍보곡 듣기"}
         </span>
       </button>
       
       <audio
         ref={audioRef}
-        src="/music/Spring Love.mp3"
+        src="/music/PlayGround.mp3"
       />
       
       {showLyrics && renderLyrics()}

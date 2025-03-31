@@ -8,21 +8,21 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata = {
-  title: '광주 연애해봄 - 청년들의 특별한 연극 공연',
-  description: '광주 청년들이 준비한 특별한 연극 "연애해 봄?". 2025년 3월 광주 아트홀에서 펼쳐지는 연극, 밴드, 댄스가 어우러진 특별한 공연. 광주 지역 청년 문화 예술 공연.',
-  keywords: '광주 연애해봄, 광주연극, 광주공연, 광주청년, 광주아트홀, 연애해봄, 봄연극, 청년연극, 광주문화',
+  title: '폭싹 속았수다 광주 ver. - 2000년대 추억 체험 팝업 스토어',
+  description: '동(童)심으로 돌아가서 현재를 동(動)심하라! 2030대 모두가 공감할 추억으로 인도하는 체험형 팝업 스토어. 광주 청년 공간 "하다"에서 2025년 4월 11-12일 개최.',
+  keywords: '폭싹 속았수다, 광주, 팝업 스토어, 2000년대, 추억, 체험, 청춘미담, 청년 공간 하다, 동심, 인사이드 아웃, 느린 우체국',
   openGraph: {
-    title: '광주 연애해봄 - 청년들의 특별한 연극 공연',
-    description: '광주 청년들이 준비한 특별한 연극 "연애해 봄?". 2025년 3월 광주 아트홀에서 펼쳐지는 특별한 공연',
+    title: '폭싹 속았수다 광주 ver. - 2000년대 추억 체험 팝업 스토어',
+    description: "동(童)심으로 돌아가서 현재를 동(動)심하라! BACK TO THE 2000's. 20~30대 모두가 공감할 추억으로 인도하는 체험형 팝업 스토어.",
     images: [
       {
-        url: 'https://lovespring.kro.kr/img/2.jpg',
+        url: 'https://sogasuda.kro.kr/img/2.jpg',
         width: 800,
         height: 600,
-        alt: '연애해 봄? 연극 포스터',
+        alt: '폭싹 속았수다 광주 ver. 포스터',
       },
     ],
-    siteName: '광주 연애해봄',
+    siteName: '폭싹 속았수다 광주 ver.',
     locale: 'ko_KR',
     type: 'website',
   },
