@@ -89,9 +89,13 @@
 
 .comment {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #339af0;
+  color: #1c7ed6;
+  white-space: nowrap;
+  display: inline-block;
+  width: auto;
+  max-width: none;
 }
 
 .commentSub {
@@ -174,6 +178,57 @@
 .icon {
   margin-right: 0.8rem;
   display: inline-block;
+}
+
+.socialLinks {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.instagramLink {
+  display: flex;
+  align-items: center;
+  color: #1c7ed6;
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  background-color: #e7f5ff;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  gap: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.instagramLink i {
+  font-size: 1.6rem;
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.instagramHandle {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.instagramLink:hover {
+  background-color: #339af0;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(51, 154, 240, 0.3);
+}
+
+.instagramLink:hover i {
+  background: white;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.instagramLink:hover .instagramHandle {
+  color: white;
 }
 
 .footer {
