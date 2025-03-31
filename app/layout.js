@@ -16,7 +16,7 @@ export const metadata = {
     description: "동(童)심으로 돌아가서 현재를 동(動)심하라! BACK TO THE 2000's. 20~30대 모두가 공감할 추억으로 인도하는 체험형 팝업 스토어.",
     images: [
       {
-        url: 'https://sogasuda.kro.kr/img/2.jpg',
+        url: 'http://sogasuda.kro.kr/img/2.jpg',
         width: 800,
         height: 600,
         alt: '폭싹 속았수다 광주 ver. 포스터',
