@@ -22,8 +22,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('/img/1.jpg') center/cover;
-  opacity: 0.2;
+  background: url('/img/end.png') center/cover;
+  opacity: 0.8;
   filter: blur(5px);
 }
 
