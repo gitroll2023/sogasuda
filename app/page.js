@@ -52,7 +52,7 @@ export default async function Home() {
             <p className={styles.commentSub}>BACK TO THE 2000's</p>
             <p className={styles.description}>
               20~30대 모두가 공감할 추억으로<br/>
-              인도하는 체험형 팝업 스토어가 열립니다!
+              인도하는 체험형 전시회가 열립니다!
             </p>
             <p className={styles.description}>
               졸업한지 10년이 지났지만 다시 친구들과 놀이터를 뛰어놀던 그 시절로 스며드는.....
