@@ -117,9 +117,11 @@ export default function YouTubePlayer() {
   const onPlayerStateChange = (event) => {
     if (event.data === window.YT.PlayerState.ENDED) { 
       try {
-        event.target.playVideo();
+        // 다음 곡으로 자동 이동
+        const newIndex = (currentSongIndex + 1) % songList.length;
+        setCurrentSongIndex(newIndex);
       } catch (error) {
-        console.error("반복 재생 실패:", error);
+        console.error("다음 곡 재생 실패:", error);
       }
     }
   };
