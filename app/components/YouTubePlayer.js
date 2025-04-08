@@ -3,140 +3,116 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './YouTubePlayer.module.css';
 
-export default function YouTubePlayer() {
-  const [isMuted, setIsMuted] = useState(true); 
+export default function MusicPlayer() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [showInstructions, setShowInstructions] = useState(true);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [playerReady, setPlayerReady] = useState(false);
-  const playerRef = useRef(null);
-  const playerContainerRef = useRef(null);
+  const videoRef = useRef(null);
   const instructionsTimerRef = useRef(null);
 
   // 노래 목록 정의
   const songList = [
-    { id: "_ZTBdW3DJOI", title: "폭싹 속았수다 OST - 디어_밤산책" },
-    { id: "GvaWFbwW7GQ", title: "폭싹 속았수다 OST - 홍이삭_내사랑 내곁에" },
-    { id: "SA-5-5h8M4U", title: "폭싹 속았수다 OST - 최백호_희망의 나라로" },
-    { id: "vH2wR2pMfqE", title: "폭싹 속았수다 OST - 곽진언_이름" },
-    { id: "iJhV11iPmRs", title: "폭싹 속았수다 OST - 추다혜_청춘가" },
-    { id: "HMSiZiRF5bA", title: "폭싹 속았수다 OST - 안은경_너영나영" },
-    { id: "YjbhJ2oTNTE", title: "폭싹 속았수다 OST - 황소윤_활활" }
+    { 
+      file: "/music/ost/디어(d.ear) - 밤 산책 (폭싹 속았수다 OST) [가사 Lyrics].mp4", 
+      title: "폭싹 속았수다 OST - 디어_밤산책" 
+    },
+    { 
+      file: "/music/ost/홍이삭 - 내사랑 내곁에 (폭싹 속았수다 OST) [가사 Lyrics].mp4", 
+      title: "폭싹 속았수다 OST - 홍이삭_내사랑 내곁에" 
+    },
+    { 
+      file: "/music/ost/최백호 - 희망의 나라로 (폭싹 속았수다 OST) [가사 Lyrics].mp4", 
+      title: "폭싹 속았수다 OST - 최백호_희망의 나라로" 
+    },
+    { 
+      file: "/music/ost/곽진언 - 이름 (폭싹 속았수다 OST) [가사 Lyrics].mp4", 
+      title: "폭싹 속았수다 OST - 곽진언_이름" 
+    },
+    { 
+      file: "/music/ost/추다혜 - 생존가 (폭싹 속았수다 OST) [가사 Lyrics].mp4", 
+      title: "폭싹 속았수다 OST - 추다혜_청춘가" 
+    },
+    { 
+      file: "/music/ost/안은경 - 너영나영 (폭싹 속았수다 OST) [가사 Lyrics].mp4", 
+      title: "폭싹 속았수다 OST - 안은경_너영나영" 
+    },
+    { 
+      file: "/music/ost/황소윤(새소년) - 활활 (폭싹 속았수다 OST) [가사 Lyrics].mp4", 
+      title: "폭싹 속았수다 OST - 황소윤_활활" 
+    }
   ];
 
-  // YouTube API 스크립트 로드
+  // 비디오 초기화 및 이벤트 리스너 설정
   useEffect(() => {
-    // 이미 API가 로드되었는지 확인
-    if (window.YT) {
-      initializePlayer();
-      return;
-    }
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
 
-    // 전역 콜백 함수 설정
-    window.onYouTubeIframeAPIReady = initializePlayer;
-
-    // API 스크립트 로드
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    // 컴포넌트 언마운트 시 정리
-    return () => {
-      if (playerRef.current) {
-        try {
-          playerRef.current.destroy();
-        } catch (error) {
-          console.error("플레이어 정리 실패:", error);
-        }
-      }
-      delete window.onYouTubeIframeAPIReady;
+    // 이벤트 리스너 설정
+    const handleEnded = () => {
+      console.log("비디오 재생 완료, 다음 곡으로 이동");
+      const newIndex = (currentSongIndex + 1) % songList.length;
+      setCurrentSongIndex(newIndex);
     };
-  }, []);
 
-  // 플레이어 초기화 함수
-  const initializePlayer = () => {
-    if (!playerContainerRef.current) return;
+    const handlePlay = () => {
+      console.log("비디오 재생 시작");
+      setIsPlaying(true);
+    };
+
+    const handlePause = () => {
+      console.log("비디오 일시 정지");
+      setIsPlaying(false);
+    };
+
+    const handleError = (e) => {
+      console.error("비디오 재생 오류:", e);
+    };
+
+    // 이벤트 리스너 등록
+    videoElement.addEventListener('ended', handleEnded);
+    videoElement.addEventListener('play', handlePlay);
+    videoElement.addEventListener('pause', handlePause);
+    videoElement.addEventListener('error', handleError);
+
+    // 비디오 소스 설정
+    videoElement.src = songList[currentSongIndex].file;
     
-    try {
-      playerRef.current = new window.YT.Player(playerContainerRef.current, {
-        videoId: songList[currentSongIndex].id,
-        playerVars: {
-          autoplay: 1, 
-          mute: 1, 
-          controls: 0,
-          rel: 0,
-          showinfo: 0,
-          modestbranding: 1,
-          loop: 1,
-          playlist: songList[currentSongIndex].id, 
-          cc_load_policy: 3, 
-          cc_lang_pref: 'ko', 
-          disablekb: 1, 
-        },
-        events: {
-          onReady: onPlayerReady,
-          onStateChange: onPlayerStateChange,
-          onError: (e) => console.error("YouTube 플레이어 오류:", e)
-        }
+    // 음소거 상태 설정
+    videoElement.muted = isMuted;
+    
+    // 자동 재생
+    const playPromise = videoElement.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.error("자동 재생 실패:", error);
       });
-    } catch (error) {
-      console.error("플레이어 초기화 실패:", error);
-    }
-  };
-
-  // 노래 변경 시 플레이어 업데이트
-  useEffect(() => {
-    if (playerReady && playerRef.current) {
-      try {
-        playerRef.current.loadVideoById({
-          videoId: songList[currentSongIndex].id,
-          suggestedQuality: 'large'
-        });
-      } catch (error) {
-        console.error("비디오 로드 실패:", error);
-      }
-    }
-  }, [currentSongIndex, playerReady]);
-
-  // 플레이어 준비 완료 핸들러
-  const onPlayerReady = (event) => {
-    setPlayerReady(true);
-    try {
-      event.target.playVideo();
-    } catch (error) {
-      console.error("재생 시작 실패:", error);
     }
 
     // 안내 메시지 타이머 설정
     instructionsTimerRef.current = setTimeout(() => {
       setShowInstructions(false);
     }, 5000);
-  };
 
-  // 플레이어 상태 변경 핸들러
-  const onPlayerStateChange = (event) => {
-    if (event.data === window.YT.PlayerState.ENDED) { 
-      try {
-        // 다음 곡으로 자동 이동
-        const newIndex = (currentSongIndex + 1) % songList.length;
-        setCurrentSongIndex(newIndex);
-      } catch (error) {
-        console.error("다음 곡 재생 실패:", error);
+    // 컴포넌트 언마운트 시 정리
+    return () => {
+      videoElement.removeEventListener('ended', handleEnded);
+      videoElement.removeEventListener('play', handlePlay);
+      videoElement.removeEventListener('pause', handlePause);
+      videoElement.removeEventListener('error', handleError);
+      
+      if (instructionsTimerRef.current) {
+        clearTimeout(instructionsTimerRef.current);
       }
-    }
-  };
+    };
+  }, [currentSongIndex, isMuted]);
 
   // 음소거 토글
   const toggleMute = () => {
-    if (!playerRef.current || !playerReady) return;
+    if (!videoRef.current) return;
     
     try {
-      if (isMuted) {
-        playerRef.current.unMute();
-        playerRef.current.setVolume(100);
-      } else {
-        playerRef.current.mute();
-      }
+      videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
       
       setShowInstructions(true);
@@ -146,6 +122,23 @@ export default function YouTubePlayer() {
       }, 3000);
     } catch (error) {
       console.error("음소거 토글 실패:", error);
+    }
+  };
+
+  // 재생/일시정지 토글
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    
+    try {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch(error => {
+          console.error("재생 실패:", error);
+        });
+      }
+    } catch (error) {
+      console.error("재생 토글 실패:", error);
     }
   };
 
@@ -164,13 +157,17 @@ export default function YouTubePlayer() {
   return (
     <div className={styles.youtubePlayerContainer}>
       <div className={styles.playerWrapper}>
-        <div ref={playerContainerRef} className={styles.player}></div>
+        <video 
+          ref={videoRef}
+          className={styles.player}
+          playsInline
+          controlsList="nodownload"
+        />
         
         <button 
           className={styles.muteButton} 
           onClick={toggleMute}
           aria-label={isMuted ? "소리 켜기" : "소리 끄기"}
-          disabled={!playerReady}
         >
           {isMuted ? (
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
@@ -179,6 +176,22 @@ export default function YouTubePlayer() {
           ) : (
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
               <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+          )}
+        </button>
+        
+        <button 
+          className={styles.playButton} 
+          onClick={togglePlay}
+          aria-label={isPlaying ? "일시정지" : "재생"}
+        >
+          {isPlaying ? (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
             </svg>
           )}
         </button>
@@ -196,7 +209,6 @@ export default function YouTubePlayer() {
             className={styles.controlButton} 
             onClick={playPreviousSong}
             aria-label="이전 노래"
-            disabled={!playerReady}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
               <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
@@ -206,7 +218,6 @@ export default function YouTubePlayer() {
             className={styles.controlButton} 
             onClick={playNextSong}
             aria-label="다음 노래"
-            disabled={!playerReady}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
               <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
@@ -216,9 +227,9 @@ export default function YouTubePlayer() {
         <div className={styles.playlist}>
           {songList.map((song, index) => (
             <div 
-              key={song.id} 
+              key={index} 
               className={`${styles.playlistItem} ${index === currentSongIndex ? styles.active : ''}`}
-              onClick={() => playerReady && setCurrentSongIndex(index)}
+              onClick={() => setCurrentSongIndex(index)}
             >
               <span className={styles.songNumber}>{index + 1}</span>
               <span className={styles.songTitle}>{song.title}</span>

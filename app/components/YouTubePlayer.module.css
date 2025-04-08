@@ -24,6 +24,8 @@
   left: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  background-color: #000;
 }
 
 .muteButton {
@@ -58,6 +60,40 @@
 .muteButton svg {
   width: 24px;
   height: 24px;
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  opacity: 0;
+}
+
+.playerWrapper:hover .playButton {
+  opacity: 1;
+}
+
+.playButton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.playButton svg {
+  width: 36px;
+  height: 36px;
 }
 
 .instructions {
@@ -197,6 +233,16 @@
     height: 36px;
     bottom: 10px;
     right: 10px;
+  }
+  
+  .playButton {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .playButton svg {
+    width: 32px;
+    height: 32px;
   }
   
   .instructions {
