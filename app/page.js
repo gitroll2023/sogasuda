@@ -79,9 +79,9 @@ export default async function Home() {
               <p><span className={styles.icon}>✏️</span>한번에 많은 사람이 몰릴수있으니, 참고 부탁드립니다 : )</p>
               <p><span className={styles.icon}>🎆</span>주최 : 청춘미담</p>
               <div className={styles.socialLinks}>
-                <a href="https://www.instagram.com/hada_in_gwangju" target="_blank" rel="noopener noreferrer" className={styles.instagramLink}>
+                <a href="https://www.instagram.com/youth_midam" target="_blank" rel="noopener noreferrer" className={styles.instagramLink}>
                   <i className="fab fa-instagram"></i>
-                  <span className={styles.instagramHandle}>@hada_in_gwangju</span>
+                  <span className={styles.instagramHandle}>@youth_midam</span>
                 </a>
               </div>
             </div>
