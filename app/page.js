@@ -18,7 +18,7 @@ export default async function Home() {
       </div>
 
       <section className={styles.container}>
-        <YouTubePlayer videoId="CDkLAhgqCdg" />
+        <YouTubePlayer />
         
         <div className={styles.imageWrapper}>
           <Image
